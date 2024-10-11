@@ -1,11 +1,12 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { IGanxoTapa } from "./api";
+import { LatLngExpression } from "leaflet";
 
 const Map = ({ points = [] }: { points?: IGanxoTapa[] }) => {
   const center = [41.78760838515345, 3.0277976427724496];
   return (
     <MapContainer
-      center={center}
+      center={center as LatLngExpression}
       zoom={13}
       scrollWheelZoom={true}
       className="h-72 md:h-96 w-full"
@@ -16,7 +17,7 @@ const Map = ({ points = [] }: { points?: IGanxoTapa[] }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {points.map(({ id, coordinates, restaurant, address }) => (
-        <Marker key={id} position={coordinates}>
+        <Marker key={id} position={coordinates as LatLngExpression}>
           <Popup>
             {restaurant} <br />
             {address}
