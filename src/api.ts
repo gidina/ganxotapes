@@ -1902,7 +1902,7 @@ export type IGanxoTapa = {
       {
         id: "irla",
         type: "tapa",
-        img: "casa_irla-OK",
+        img: "casa_irla-GTt24",
         price: "3",
         restaurant: "BAR CASA IRLA",
         address: "C/ Algavira, 65-69",
@@ -1926,7 +1926,7 @@ export type IGanxoTapa = {
       {
         id: "latino",
         type: "tapa",
-        img: "sabor_latino-GTt24.",
+        img: "sabor_latino-GTt24",
         price: "3",
         restaurant: "BAR SABOR LATINO",
         address: "C/ Lugo, 10",
@@ -2088,7 +2088,7 @@ export type IGanxoTapa = {
       {
         id: "kiku",
         type: "tapa",
-        img: "can_kiku-OK",
+        img: "can_kiku-GTt24",
         price: "3",
         restaurant: "CAN KIKU",
         address: "C/ Major, 10-12",
