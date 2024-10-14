@@ -1859,7 +1859,7 @@ export type IGanxoTapa = {
 
   const ganxotapesTardor24: IGanxoTapes = {
     season: "Tardor 24",
-    cover: "ganxotapes-tardor-24.jpeg", // TODO
+    cover: "ganxotapes-tardor-24.png",
     description: `
     Ganxotapes Tardor 2024 SANT FELIU DE GUÍXOLS
 
