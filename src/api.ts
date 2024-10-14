@@ -1882,7 +1882,7 @@ export type IGanxoTapa = {
         address: "C/ Major, 30",
         telephone: "683 557 956",
         website: "www.220sushi.com",
-        title: "Zamburiña” amb maio de kimchi, ous de peix volador i ratlladura de llima",
+        title: "'Zamburiña' amb maio de kimchi, ous de peix volador i ratlladura de llima",
         schedule2: `De dimecres a diumenge de 12 a 13 h i de 19 a 20 h
           Dilluns i dimarts tancat`,
         schedule: [

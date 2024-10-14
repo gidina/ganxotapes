@@ -245,7 +245,7 @@ export default function GanxoTapes() {
             Mostrant {ganxotapes.length} resultats
           </p>
         </div>
-        <ul className="w-full grid gap-4 md:grid-cols-4 md:gap-8">
+        <ul className="w-full grid gap-8 md:max-w-3xl m-auto">
           {ganxotapes.map((ganxotapa) => (
             <li key={ganxotapa.id}>
               <GanxoTapa info={ganxotapa} />

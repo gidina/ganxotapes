@@ -3,16 +3,21 @@ import { IGanxoTapa } from "./api";
 
 const GanxoTapa = ({ info }: { info: IGanxoTapa }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 gap-4">
+      <div className="font-bold">{info.restaurant}</div>
+      {info.type === "tapa" && (
+        <div className="text-gray-600">{info.title}</div>
+      )}
+      {info.type === "menu" && (
+        <div className="whitespace-pre-line">{info.menu}</div>
+      )}
       <img
         src={`https://www.visitguixols.com/images/${info.img}.jpg`}
         alt="Ganxotapa imatge"
         width={200}
         height={200}
-        className="w-full row-span-2 md:row-auto md:order-3"
+        className="w-full row-span-2 md:row-auto"
       />
-      <div>{info.restaurant}</div>
-      <div>{info.title}</div>
       <div>{info.schedule2}</div>
     </div>
   );
