@@ -1859,8 +1859,18 @@ export type IGanxoTapa = {
 
   const ganxotapesTardor24: IGanxoTapes = {
     season: "Tardor 24",
-    cover: "ganxotapes-primavera-24.jpeg", // TODO
-    description: "TODO description",
+    cover: "ganxotapes-tardor-24.jpeg", // TODO
+    description: `
+    Ganxotapes Tardor 2024 SANT FELIU DE GUÍXOLS
+
+    Del 18 d'octubre al 17 de novembre de 2024
+
+    Ganxotapa + beguda*. Preu 3€
+
+    Menú de 6 tapes + 1 beguda* / persona
+
+    *cervesa, vi o aigua
+    `,
     awards: "TODO awards",
     duration: ["2024-10-18", "2024-11-17"],
     menu: [
