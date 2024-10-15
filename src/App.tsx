@@ -21,7 +21,7 @@ export default function App() {
         />
         <button
           onClick={() => setShowMoreInfo(!showMoreInfo)}
-          className="w-full"
+          className="w-full mb-4"
         >
           {showMoreInfo
             ? "Amaga informació addicional"
