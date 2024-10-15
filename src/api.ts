@@ -2503,8 +2503,7 @@ export type IGanxoTapa = {
         address: "C/ Sant Pere, 33",
         telephone: "872 26 51 01",
         website: "www.differentrestaurant.cat",
-        menu: `
-          MENÚ (taula completa)
+        menu: `MENÚ (taula completa)
 
           Vieires amb foie
           Crema d’espàrrecs verds amb encenalls de pernil
@@ -2544,8 +2543,7 @@ export type IGanxoTapa = {
         address: "C/ Especiers, 5",
         telephone: "616 770 854",
         website: "www.canmiquel.cat",
-        menu: `
-          MENÚ (taula completa)
+        menu: `MENÚ (taula completa)
 
           Lingot cremós de perol trompetes de la mort i ceba caramel·litzada
           Tempura de shiso, stracciatella, cansalada ibèrica i oli trufat
@@ -2578,8 +2576,7 @@ export type IGanxoTapa = {
         restaurant: "EL TRINQUET",
         address: "C/Sant Pere, 26 ",
         telephone: "722 550 156",
-        menu: `
-        MENÚ (taula completa)
+        menu: `MENÚ (taula completa)
 
         Vermut artesanal acompanyat de la nostra gilda casolana amb anxova de l’Escala, “piparra” i oliva farcida d’anxova
         Steak tàrtar de vedella sobre milfulls de patata brava
@@ -2612,8 +2609,7 @@ export type IGanxoTapa = {
         address: "Rambla Portalet, 8-10 ",
         telephone: "872 20 21 08",
         website: "www.elkehotel.com",
-        menu: `
-          MENÚ
+        menu: `MENÚ
 
           Albergínia en escabetx lleugera
           Xarrup de crema de carbassa i tàrtar de gamba amb un toc d’anís
@@ -2646,8 +2642,7 @@ export type IGanxoTapa = {
         address: "Escullera del Port, s/n",
         telephone: "972 28 21 00",
         website: "www.gruponomo.com",
-        menu: `
-          MENÚ (taula completa)
+        menu: `MENÚ (taula completa)
 
           Edamame amb sèsam picant
           Croqueta japonesa de pop
@@ -2679,8 +2674,7 @@ export type IGanxoTapa = {
         restaurant: "TACO'S KING",
         address: "C/ de la Indústria, 42, Local 2",
         telephone: "674 06 31 29",
-        menu: `
-        MENÚ
+        menu: `MENÚ
 
         Aletes Barboue
         Samosas
@@ -2714,8 +2708,7 @@ export type IGanxoTapa = {
         address: "Ctra. de Sant Pol, 634",
         telephone: "872 20 06 06",
         website: "www.hotelalabriga.com",
-        menu: `
-          MENÚ
+        menu: `MENÚ
 
           Sopa de crema de ceps a l'Armagnac
           Bikini de llom ibèric amb formatge comté i tòfona
