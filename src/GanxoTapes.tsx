@@ -3,6 +3,8 @@ import ganxotapesTardor23, { IGanxoTapa } from "./api";
 import GanxoTapa from "./GanxoTapa";
 import Map from "./Map";
 import { getDatesFromPeriod, getTimeRange } from "./utils";
+import GridExample from "./GridExample";
+import GanxoTapesGrid from "./GanxoTapesGrid";
 
 const datesOfPeriod = getDatesFromPeriod(ganxotapesTardor23.duration);
 const getTimeTable = (
@@ -245,13 +247,119 @@ export default function GanxoTapes() {
             Mostrant {ganxotapes.length} resultats
           </p>
         </div>
+        {/* <GridExample /> */}
+        <GanxoTapesGrid ganxotapes={ganxotapes} />
+        {/* HERE
+        <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 md:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">
+              1- SUSHI 220
+            </h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              Mini tapa de pollastre a l'ast amb pebrot vermell i groc també
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">
+              Mini tapa de pollastre a l'ast amb pebrot vermell i groc també
+            </h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              1- SUSHI 220
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Paris</h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              City of love
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Paris</h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              City of love
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Paris</h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              City of love
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Paris</h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              City of love
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Paris</h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              City of love
+            </div>
+          </article>
+          <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl px-8 pb-8 pt-40 mx-auto w-full">
+            <img
+              src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a"
+              alt="University of Southern California"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+            <h3 className="z-10 mt-3 text-3xl font-bold text-white">Paris</h3>
+            <div className="z-10 gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+              City of love
+            </div>
+          </article>
+        </div>
+        HERE
         <ul className="w-full grid gap-8 md:max-w-3xl m-auto">
           {ganxotapes.map((ganxotapa) => (
             <li key={ganxotapa.id}>
               <GanxoTapa info={ganxotapa} />
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );
