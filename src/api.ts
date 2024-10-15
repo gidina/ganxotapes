@@ -25,7 +25,7 @@ export type IGanxoTapa = {
     menu: IGanxoTapa[];
     cover: string;
     description: string;
-    awards: string;
+    awards?: string;
   };
   
   const ganxotapesTardor23: IGanxoTapes = {
@@ -893,7 +893,6 @@ export type IGanxoTapa = {
     season: "Primavera 24",
     cover: "ganxotapes-primavera-24.jpeg",
     description: "TODO description",
-    awards: "TODO awards",
     duration: ["2024-04-19", "2024-05-19"],
     menu: [
       {
@@ -1870,7 +1869,6 @@ export type IGanxoTapa = {
 
     *cervesa, vi o aigua
     `,
-    awards: "TODO awards",
     duration: ["2024-10-18", "2024-11-17"],
     menu: [
       {

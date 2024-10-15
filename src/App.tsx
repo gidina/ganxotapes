@@ -30,8 +30,12 @@ export default function App() {
         {showMoreInfo && (
           <div>
             <p className="whitespace-pre-line">{ganxotapesData.description}</p>
-            <h2>Premis</h2>
-            <p className="whitespace-pre-line">{ganxotapesData.awards}</p>
+            {ganxotapesData.awards && (
+              <div className="mt-6">
+                <h2>Premis</h2>
+                <p className="whitespace-pre-line">{ganxotapesData.awards}</p>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -12,13 +12,15 @@ const GanxoTapesGridItem = ({ info }: { info: IGanxoTapa }) => {
         {info.restaurant}
       </div>
       <span className="flex flex-col gap-2">
-        <h3 className="mt-6 text-sm font-medium text-gray-900 flex-1">
+        <h3 className="mt-6 text-sm font-medium text-gray-900 dark:text-gray-300 flex-1">
           {info.type === "tapa" && <div>{info.title}</div>}
           {info.type === "menu" && (
             <div className="whitespace-pre-line">{info.menu}</div>
           )}
         </h3>
-        <dd className="text-sm text-gray-600">{info.schedule2}</dd>
+        <dd className="text-sm text-gray-600 dark:text-gray-50">
+          {info.schedule2}
+        </dd>
       </span>
     </li>
   );
