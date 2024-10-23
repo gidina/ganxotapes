@@ -1,4 +1,4 @@
-import { IGanxoTapa } from "./api";
+import { IGanxoTapa } from "./IGanxoTapa";
 import GanxoTapesGridItem from "./GanxoTapesGridItem";
 
 const GanxoTapesGrid = ({ ganxotapes }: { ganxotapes: IGanxoTapa[] }) => (

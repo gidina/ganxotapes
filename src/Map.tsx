@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { IGanxoTapa } from "./api";
 import { LatLngExpression } from "leaflet";
+import { IGanxoTapa } from "./IGanxoTapa";
 
 const Map = ({ points = [] }: { points?: IGanxoTapa[] }) => {
   const center = [41.78760838515345, 3.0277976427724496];

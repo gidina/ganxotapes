@@ -1,4 +1,4 @@
-import { IGanxoTapa } from "./api";
+import { IGanxoTapa } from "./IGanxoTapa";
 // import useUser from "./userUser";
 
 const GanxoTapa = ({ info }: { info: IGanxoTapa }) => {

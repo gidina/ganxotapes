@@ -1,5 +1,5 @@
 import { useEffect, useId } from "react";
-import { IGanxoTapa } from "./api";
+import { IGanxoTapa } from "./IGanxoTapa";
 
 const useUser = () => {
   // console.log("---useUser---");

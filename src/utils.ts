@@ -1,4 +1,4 @@
-import ganxotapesInfo, { IGanxoTapa } from "./api";
+import { IGanxoTapa } from "./IGanxoTapa";
 
 // HH or HH:MM
 const getDateTime = (timeStr: string) => {
