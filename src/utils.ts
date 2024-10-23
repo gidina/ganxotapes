@@ -1,3 +1,5 @@
+import ganxotapesInfo, { IGanxoTapa } from "./api";
+
 // HH or HH:MM
 const getDateTime = (timeStr: string) => {
   const [hours, minutes] = timeStr.split(":");
@@ -61,4 +63,31 @@ const getDatesFromPeriod = (period: string[]) => {
   return dates;
 };
 
-export { getTimeRange, getDatesFromPeriod };
+const getTimeTable = (
+  schedule: string[][],
+  datesOfPeriod: Date[]
+): IGanxoTapa["timetable"] => {
+  const timetable = datesOfPeriod.map((date) => {
+    const indexDayOfWeek = date.getDay();
+    const dailyPeriods = schedule[indexDayOfWeek];
+    const dailyPeriodDates = dailyPeriods.map((period) => {
+      const [startDate, endDate] = getTimeRange(period);
+      const startPeriodDate = new Date(date);
+      startPeriodDate.setHours(startDate.getHours());
+      startPeriodDate.setMinutes(startDate.getMinutes());
+      startPeriodDate.setSeconds(0);
+
+      const endPeriodDate = new Date(date);
+      endPeriodDate.setHours(endDate.getHours());
+      endPeriodDate.setMinutes(endDate.getMinutes());
+      endPeriodDate.setSeconds(0);
+
+      return [startPeriodDate, endPeriodDate];
+    });
+    return dailyPeriodDates;
+  });
+
+  return timetable.flat();
+};
+
+export { getTimeRange, getDatesFromPeriod, getTimeTable };

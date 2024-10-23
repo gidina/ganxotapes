@@ -1,93 +1,20 @@
 import { useState } from "react";
-import ganxotapesTardor23, { IGanxoTapa } from "./api";
+import { ISortBy } from "./IGanxoTapa";
+import ganxotapesInfo from "./api";
+import {
+  compareSortCriteria,
+  isOpenedNow,
+  isOpenedInDate,
+  isSuitableForCeliac,
+  isSuitableForVegetarian,
+  isSuitableForVegan,
+  isTapa,
+  isMenu,
+  isFilteredByText,
+  isFilteredByActive,
+} from "./utils-ganxotapes";
 import Map from "./Map";
-import { getDatesFromPeriod, getTimeRange } from "./utils";
 import GanxoTapesGrid from "./GanxoTapesGrid";
-
-const datesOfPeriod = getDatesFromPeriod(ganxotapesTardor23.duration);
-const getTimeTable = (
-  schedule: IGanxoTapa["schedule"]
-): IGanxoTapa["timetable"] => {
-  const timetable = datesOfPeriod.map((date) => {
-    const indexDayOfWeek = date.getDay();
-    const dailyPeriods = schedule[indexDayOfWeek];
-    const dailyPeriodDates = dailyPeriods.map((period) => {
-      const [startDate, endDate] = getTimeRange(period);
-      const startPeriodDate = new Date(date);
-      startPeriodDate.setHours(startDate.getHours());
-      startPeriodDate.setMinutes(startDate.getMinutes());
-      startPeriodDate.setSeconds(0);
-
-      const endPeriodDate = new Date(date);
-      endPeriodDate.setHours(endDate.getHours());
-      endPeriodDate.setMinutes(endDate.getMinutes());
-      endPeriodDate.setSeconds(0);
-
-      return [startPeriodDate, endPeriodDate];
-    });
-    return dailyPeriodDates;
-  });
-
-  return timetable.flat();
-};
-
-const isOpenedNow = (info: IGanxoTapa) => {
-  const currentDate = new Date();
-  const timeTable = getTimeTable(info.schedule) || [];
-
-  return timeTable.some((timeRange) => {
-    const currentTimeInMs = currentDate.getTime();
-    const [startTime, endTime] = timeRange;
-    const startTimeInMs = startTime.getTime();
-    const endTimeInMs = endTime.getTime();
-
-    return currentTimeInMs < endTimeInMs && currentTimeInMs >= startTimeInMs;
-  });
-};
-
-const isOpenedInDate = (date: string, info: IGanxoTapa) => {
-  const selectedDate = new Date(date);
-  const timeTable = getTimeTable(info.schedule) || [];
-
-  return timeTable.some((timeRange) => {
-    const currentTimeInMs = selectedDate.getTime();
-    const [startTime, endTime] = timeRange;
-    const startTimeInMs = startTime.getTime();
-    const endTimeInMs = endTime.getTime();
-
-    return currentTimeInMs < endTimeInMs && currentTimeInMs >= startTimeInMs;
-  });
-};
-
-const isSuitableForCeliac = (info: IGanxoTapa) => {
-  if (info.allergies?.includes("celiac")) {
-    return true;
-  }
-
-  return false;
-};
-const isSuitableForVegetarian = (info: IGanxoTapa) => {
-  if (info.allergies?.includes("vegetarian")) {
-    return true;
-  }
-
-  return false;
-};
-const isSuitableForVegan = (info: IGanxoTapa) => {
-  if (info.allergies?.includes("vegan")) {
-    return true;
-  }
-
-  return false;
-};
-
-const isTapa = (info: IGanxoTapa) => info.type === "tapa";
-const isMenu = (info: IGanxoTapa) => info.type === "menu";
-
-const isFilteredByText = (text: string, filterText: string) =>
-  text.toLowerCase().includes(filterText.toLowerCase());
-const isFilteredByActive = (active: boolean, filterActive: boolean) =>
-  (filterActive && active) || !filterActive;
 
 export default function GanxoTapes() {
   const [filterByName, setFilterByName] = useState("");
@@ -99,8 +26,9 @@ export default function GanxoTapes() {
   const [showMenus, setShowMenus] = useState(true);
   const [selectedDate, setSelectedDate] = useState("");
   const [showMap, setShowMap] = useState(false);
+  const [sortBy, setSortBy] = useState<ISortBy>("restaurant");
 
-  const ganxotapes = ganxotapesTardor23.menu.filter(
+  const ganxotapesToSort = ganxotapesInfo.menu.filter(
     (ganxotapa) =>
       isFilteredByText(ganxotapa.restaurant, filterByName) &&
       isFilteredByActive(isOpenedNow(ganxotapa), filterOpenedNow) &&
@@ -116,6 +44,11 @@ export default function GanxoTapes() {
         !!selectedDate
       )
   );
+
+  const ganxotapes = ganxotapesToSort.sort((infoA, infoB) =>
+    compareSortCriteria(infoA, infoB, sortBy, selectedDate)
+  );
+
   return (
     <div className="w-full">
       <div className="grid gap-8">
@@ -132,7 +65,7 @@ export default function GanxoTapes() {
               Mostra mapa
             </span>
           </label>
-          {showMap ? <Map points={ganxotapesTardor23.menu} /> : null}
+          {showMap ? <Map points={ganxotapesInfo.menu} /> : null}
         </div>
         <div className="flex items-center gap-2">
           <label
@@ -144,11 +77,14 @@ export default function GanxoTapes() {
           <input
             type="datetime-local"
             id="selected-date"
-            max={ganxotapesTardor23.duration[1]}
-            min={ganxotapesTardor23.duration[0]}
+            max={ganxotapesInfo.duration[1]}
+            min={ganxotapesInfo.duration[0]}
             value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={(e) => {
+              setSelectedDate(e.target.value);
+              setFilterOpenedNow(false);
+            }}
+            className="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
         <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-4">
@@ -188,7 +124,10 @@ export default function GanxoTapes() {
             <input
               type="checkbox"
               checked={filterOpenedNow}
-              onChange={() => setFilterOpenedNow(!filterOpenedNow)}
+              onChange={() => {
+                setFilterOpenedNow(!filterOpenedNow);
+                setSelectedDate("");
+              }}
               className="sr-only peer"
             />
             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
@@ -232,6 +171,30 @@ export default function GanxoTapes() {
               Apte per a vegans
             </span>
           </label>
+        </div>
+        <div className="flex items-center gap-2">
+          <label
+            htmlFor="sorting-by"
+            className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Ordena per
+          </label>
+          <select
+            id="sorting-by"
+            className="flex-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            onChange={(e) => {
+              const value = e.target.value as ISortBy;
+              setSortBy(value);
+            }}
+            value={sortBy}
+          >
+            <option value="" disabled>
+              Selecciona un criteri
+            </option>
+            <option value="restaurant">Nom Restaurant</option>
+            <option value="schedule-close">Tanca pròximament</option>
+            <option value="schedule-open">Horari d'obertura</option>
+          </select>
         </div>
         <div>
           <input
